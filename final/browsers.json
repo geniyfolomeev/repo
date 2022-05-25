@@ -1,0 +1,19 @@
+{
+    "chrome": {
+        "default": "99.0",
+        "versions": {
+            "99.0": {
+                "image": "selenoid/chrome:99.0",
+                "port": "4444",
+                "path": "/",
+                "privileged": true
+            },
+            "98.0": {
+                "image": "selenoid/chrome:98.0",
+                "port": "4444",
+                "path": "/",
+                "privileged": true
+            }
+        }
+    }
+}

@@ -1,0 +1,25 @@
+#!/bin/bash
+file="access.log"
+
+echo -e "Getting total number of requests.\nThere are $(grep -c "" $file) requests in log file.\n" > parsed_log_bash.log
+
+echo -e "Getting number of requests for each type of request." >> parsed_log_bash.log
+for method in $(awk '{print $6}' $file | sort | uniq)
+do
+if ((${#method} < 10)); then
+printf "%s: %s\n" "$(echo $method | cut -c2-)" "$(grep -c $method $file)" >> parsed_log_bash.log
+fi
+done
+
+echo -e "\nGetting top 10 most popular requests." >> parsed_log_bash.log
+cat -E $file | awk '{print $7}' | awk -F "?" '{print$1}' | sort | uniq -c | sort -n -r | head -10 | awk '{print $2,"\n"$1}'>> parsed_log_bash.log
+
+echo -e "\nGetting 5 biggest requests with 4xx error." >> parsed_log_bash.log
+cat -E $file | awk '{print $9, $7, $10, $1}' | grep ^4 | sort -k3 -n -r | head -5 | awk '{print $2,"\n"$1,"\n"$3,"\n"$4}' >> parsed_log_bash.log
+
+echo -e "\nGetting 5 users by number of requests that ended with a 5xx error." >> parsed_log_bash.log
+cat -E $file | awk '{print $9, $1}' | grep ^5 | uniq -c | sort -k1 -n -r | head -5 | awk '{print $3,"\n"$1}' >> parsed_log_bash.log
+
+
+
+

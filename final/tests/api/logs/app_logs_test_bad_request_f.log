@@ -1,0 +1,22 @@
+172.21.0.1 - - [23/May/2022 00:54:20] "[33mDELETE /api/user/3xPHFcP HTTP/1.1[0m" 404 -
+[2022-05-23 00:54:20,315] INFO in views: Get status is ok from: 172.21.0.1
+23.05.2022 00:54:20.312 - app - ERROR - Exception on /api/user [POST]
+Traceback (most recent call last):
+File "flask/app.py", line 2073, in wsgi_app
+File "flask/app.py", line 1518, in full_dispatch_request
+File "flask/app.py", line 1516, in full_dispatch_request
+File "flask/app.py", line 1502, in dispatch_request
+File "flask_login/utils.py", line 272, in decorated_view
+File "views.py", line 237, in add_user_api
+TypeError: string indices must be integers
+[2022-05-23 00:54:20,312] ERROR in app: Exception on /api/user [POST]
+Traceback (most recent call last):
+File "flask/app.py", line 2073, in wsgi_app
+File "flask/app.py", line 1518, in full_dispatch_request
+File "flask/app.py", line 1516, in full_dispatch_request
+File "flask/app.py", line 1502, in dispatch_request
+File "flask_login/utils.py", line 272, in decorated_view
+File "views.py", line 237, in add_user_api
+TypeError: string indices must be integers
+172.21.0.1 - - [23/May/2022 00:54:20] "GET /status HTTP/1.1" 200 -
+172.21.0.1 - - [23/May/2022 00:54:20] "[35m[1mPOST /api/user HTTP/1.1[0m" 500 -
